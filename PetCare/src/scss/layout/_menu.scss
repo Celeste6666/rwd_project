@@ -1,0 +1,19 @@
+.menu{
+  &-list{
+    display: none;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height: 100vh;
+    background-color: $light-info;
+    z-index: 1000;
+  }
+  &-close-btn{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+  }
+  &-list.isActive{
+    display: flex;
+  }
+}

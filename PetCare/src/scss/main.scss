@@ -1,0 +1,31 @@
+/* 基礎 */
+@import './base/reset';
+@import './base/typography';
+
+/* 變數 */
+@import './helper/variable';
+@import './helper/mixin';
+@import './helper/extend';
+
+/* 模組 */
+@import './module/grid';
+@import './module/flex';
+@import './module/card';
+
+/* 視覺主題 */
+@import './theme/light';
+@import './theme/dark';
+
+/* 固定區塊 */
+@import './layout/header';
+@import './layout/menu';
+@import './layout/footer';
+
+/* 頁面 */
+@import './layout/page/home';
+
+//importing font awesome
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";

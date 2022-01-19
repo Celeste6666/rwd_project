@@ -1,0 +1,17 @@
+$circle-radius: 65px;
+body{
+  background-color: $light-yellow;
+  color: #000;
+  &::before{
+    content:"";
+    position: absolute;
+    border-radius: 50%;
+    width: $circle-radius * 2;
+    height: $circle-radius * 2;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transform: translate(-$circle-radius,-$circle-radius);
+    background-color: $info;
+  }
+}

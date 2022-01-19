@@ -1,0 +1,32 @@
+.card{
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  line-height: 1.15;
+  border-radius: $border-radius;
+  &-img{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: inherit;
+  }
+  &-title{
+    text-transform:capitalize;
+    @include pad{
+      margin-top: 10px;
+    }
+  }
+  @include pad{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+body.dark-theme .card{
+  background-color: lighten($dark-theme-card, 15%)
+}

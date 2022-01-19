@@ -1,0 +1,22 @@
+.d-flex{
+  display: flex;
+}
+
+$aligns: center, end, start, stretch, space-between, space-around, space-evenly;
+
+@each $align in $aligns{
+  .justify-content-#{$align}{
+    justify-content: $align;
+  }
+  .align-items-#{$align}{
+    align-items: $align;
+  }
+}
+
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
+.flex-column{
+  flex-direction: column;
+}

@@ -1,0 +1,229 @@
+.border-radius{
+  border-radius: $border-radius;
+}
+
+.img-border{
+  position: relative;
+  transform:scale(.75);
+  &>img{
+    max-height: 400px;
+    border-radius: $img-border-radius;
+  }
+  &::before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: $bg-border-radius;
+    border: 1.5px solid;
+    border-color: inherit;
+    transform: rotate(35deg);
+  }
+}
+
+
+.fa-ul {
+  margin-left: 1.5em !important;
+  line-height: 1.75;
+}
+
+.icon{
+  z-index: -1;
+  animation: iconAnimation 40s linear;
+}
+
+.banner{
+  .icon{
+    bottom: -50px;
+    left: -80px;
+  }
+  .icon{
+    @include pad{
+      bottom: 20px;
+    }
+  }
+  .row{
+    @include pad{
+      flex-direction: column-reverse !important;
+    }
+  }
+}
+
+.about{
+  .icon{
+    bottom: -50px;
+    left: -50px;
+  }
+}
+
+.banner,.about,.service{
+  .row{
+    @include pad{
+      display:flex;
+      align-items:center;
+      flex-direction: column;
+    }
+  }
+}
+
+
+.haves{
+  @include mobile{
+    flex-direction: column;
+    align-items:center;
+    
+  }
+}
+
+.have{
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width: 150px;
+  height: 150px;
+  &-content{
+    z-index: 2;
+  }
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: $border-radius;
+    opacity: .6;
+  }
+  &::before{
+    z-index: -1;
+    transform: rotate(45deg);
+  }
+  &::after{
+    z-index: 0;
+    transform: rotate(25deg);
+  }
+
+  &:nth-child(1)::before,
+  &:nth-child(1)::after {
+    background-color: $light-danger;
+  }
+  &:nth-child(2)::before,
+  &:nth-child(2)::after{
+    background-color: $light-info;
+  }
+  &:nth-child(3)::before,
+  &:nth-child(3)::after{
+    background-color: $primary;
+  }
+  &:nth-child(4)::before,
+  &:nth-child(4)::after{
+    background-color: $light-info;
+  }
+  @include mobile{
+    min-width: 200px;
+    min-height: 200px;
+    margin: 50px
+  }
+}
+
+.price{
+  .card{
+    &-body{
+      width: 100%;
+      @include pad{
+        text-align:left;
+      }
+    }
+    hr{
+      border-width: 0.5px;
+      opacity: 0.2;
+    }
+    @include pad{
+      margin: 20px 0;
+    }
+  }
+  .cards{
+    @include pad{
+      text-align: left;
+      flex-direction: column;
+    }
+  }
+}
+
+.contact{
+  .row{
+    @include mobile{
+      display:flex;
+      align-items:center;
+      flex-direction: column;
+    }
+  }
+  .card{
+    border-radius: $btn-border-radius;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &::before,
+    &::after{      
+      content:"";
+      position: absolute;
+    }
+    &::before{
+      top: -70px;
+      right: -10px;
+      background-color: $danger;
+      transform:rotate(20deg);
+      width: 30px;
+      height: 30px;
+    }
+    &::after{
+      bottom: 0;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background-color: $info;
+      transform:rotate(45deg)
+    }
+  }
+  &-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &-area{
+      position: relative;
+      border-bottom-width: 1px;
+      border-style: solid;
+      width: 100%;
+      label,
+      input
+      {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        text-align: left;
+      }
+      label{
+        transition: all .5s;
+      }
+      input{
+        z-index: 999;
+        font-size: 18px;
+      }
+      input{
+        &:focus, &:not(:placeholder-shown), &:-webkit-autofill{
+          &+label{
+            font-size: 12px;
+            bottom: 30px;
+          }
+        }
+      }
+    }
+    textarea{
+      border-bottom-width: 1px;
+      border-style: solid;
+    }
+  }
+}

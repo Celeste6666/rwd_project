@@ -1,0 +1,31 @@
+footer{
+  border-top-width: 1px;
+  border-style: solid;
+  position: relative;
+  overflow: hidden;
+  &::after{
+    content:"";
+    position: absolute;
+    border-radius: 50%;
+    width: $circle-radius * 2;
+    height: $circle-radius * 2;
+    z-index: -1;
+    bottom: 0;
+    right: 0;
+    transform: translate($circle-radius,$circle-radius);
+    background-color: $danger;
+  }
+  .theme-toggle{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+  .row{
+    padding: 2% 5%;
+  }
+  &>section:last-child{
+    width: 100%;
+    border-top-width: 1px;
+    border-style: solid;
+  }
+}

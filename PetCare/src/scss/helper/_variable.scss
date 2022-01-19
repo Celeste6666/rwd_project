@@ -1,0 +1,37 @@
+$red: #e88486;
+$light-red:#eca79b;
+$purple: #a68be9;
+$light-purple: #c2abdc;
+$yellow: #f3cf7b;
+$light-yellow: #f5e7c6;
+$grey: #878787;
+
+$primary: $yellow;
+$light-primary: $light-yellow;
+$secondary: $grey;
+$danger: $red;
+$light-danger: $light-red;
+$info: $purple;
+$light-info: $light-purple;
+$secondary: $grey;
+$dark-theme:#231b35;
+$dark-theme-card:rgba(46, 30, 82, 0.1);
+
+
+
+$img-border-radius: 55% 120% 85% 75% / 85% 90% 65% 80%;
+$bg-border-radius: 65% 90% 75% 65% / 85% 65% 75% 60%;
+
+$border-radius: 10px;
+$btn-border-radius: 20px;
+
+
+@keyframes iconAnimation {
+  from{
+    transform: translateX(0px);
+    
+  }
+  to{
+    transform: translateX(100px);
+  }
+}

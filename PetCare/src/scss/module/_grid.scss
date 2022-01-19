@@ -1,0 +1,47 @@
+$part: 12; // 12等分
+
+.container{
+  width: 100%;
+  padding: 2% 5%;
+}
+
+.row{
+  display: grid;
+  grid-template: auto / repeat($part, 1fr);
+  gap: 1rem 1.5rem;
+  grid-auto-flow: row;
+}
+
+// 對齊
+// 內部
+$inside-aligns: center, end, start, stretch;
+@each $align in $inside-aligns{
+  .justify-items-#{$align} {
+    justify-items: $align;
+  }
+  .align-items-#{$align} {
+    align-items: $align;
+  }
+}
+
+// 外部
+$outside-aligns: center, end, start, stretch, space-between, space-around, space-evenly;
+@each $align in $outside-aligns{
+  .justify-content-#{$align} {
+    justify-content: $align;
+  }
+  .align-content-#{$align} {
+    align-content: $align;
+  }
+}
+
+// column 佔位
+@for $start-line from 1 through $part{
+  @for $column from 1 through $part {
+    .col-#{$start-line}-#{$column}{
+      @include grid-column($start-line, $column)
+    }
+  }
+}
+
+
