@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const { extendDefaultPlugins } = require('svgo');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -55,7 +57,7 @@ module.exports = {
       },
       // 處理圖片
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(ico|png|jpg|gif)$/,
         type: 'asset',
         generator: {
           filename: 'asset/[hash:5][ext]',
@@ -91,6 +93,19 @@ module.exports = {
     minimizer: [
       `...`,
       new CssMinimizerWebpackPlugin(),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              'imagemin-gifsicle',
+              'imagemin-mozjpeg',
+              'imagemin-pngquant',
+              'imagemin-svgo',
+            ],
+          },
+        },
+      }),
     ],
   },
   devtool: devMode ? 'eval-cheap-module-source-map' : 'nosources-source-map',

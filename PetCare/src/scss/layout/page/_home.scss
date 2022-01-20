@@ -30,11 +30,11 @@
 
 .icon{
   z-index: -1;
-  animation: iconAnimation 40s linear;
 }
 
 .banner{
   .icon{
+    animation: iconAnimation 20s linear;
     bottom: -50px;
     left: -80px;
   }
