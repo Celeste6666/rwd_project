@@ -1,5 +1,9 @@
 import '@/scss/main';
-import '@/js/home';
+
+import(
+/* webpackPrefetch: true */
+  '@/js/home'
+);
 
 if (module.hot) {
   module.hot.accept('@/js/home', () => {

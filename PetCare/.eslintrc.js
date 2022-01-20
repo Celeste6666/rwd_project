@@ -7,7 +7,24 @@ module.exports = {
     es6: true,
   },
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 12,
     sourceType: 'module',
+  },
+  settings: {
+    'import/resolver': 'webpack',
+  },
+  rules: {
+    'import/extensions': [
+      'warn',
+      'ignorePackages',
+      {
+        '.js': 'never',
+        '.scss': 'never',
+      },
+    ],
+    'import/no-import-module-exports': ['warn', {
+      exceptions: ['*.scss'],
+    }],
+    'import/no-unresolved': [1, { ignore: ['.scss$'] }],
   },
 };

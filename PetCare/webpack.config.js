@@ -1,18 +1,19 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  mode: 'production',
+  mode: process.env.NODE_ENV,
   entry: {
-    home: ['./src/js/index.js', './src/index.html'],
+    home: './src/js/index.js',
   },
   output: {
     path: `${__dirname}/dist`,
-    filename: '[name]_[contenthash:5].js',
+    filename: 'js/[name]_[contenthash:5].js',
     clean: true,
   },
   plugins: [
@@ -23,7 +24,8 @@ module.exports = {
     }),
     // 單獨輸出 CSS
     new MiniCssExtractPlugin({
-      filename: 'css/[name]_[contenthash:5].css'
+      linkType: 'text/css',
+      filename: 'css/[name]_[contenthash:5].css',
     }),
     // ESLint
     new ESLintWebpackPlugin({
@@ -34,21 +36,21 @@ module.exports = {
     rules: [
       // 處理 CSS
       {
-        test: /\.scss$/i,
+        test: /\.s?css$/i,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions:{
+              postcssOptions: {
                 plugins: [
                   'postcss-preset-env',
                 ],
               },
             },
           },
-          'sass-loader'
+          'sass-loader',
         ],
       },
       // 處理圖片
@@ -68,20 +70,30 @@ module.exports = {
         test: /\.(svg|eot|woff|woff2|ttf)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[hash:5][ext][query]'
-        }
+          filename: 'fonts/[hash:5][ext][query]',
+        },
       },
       // 處理 JS
     ],
   },
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          type: 'css/mini-extract',
+          chunks: 'all',
+          enforce: true,
+        },
+      },
+    },
     minimize: true,
     minimizer: [
       `...`,
       new CssMinimizerWebpackPlugin(),
     ],
   },
-  devtool: devMode?'eval-cheap-module-source-map': 'none',
+  devtool: devMode ? 'eval-cheap-module-source-map' : 'nosources-source-map',
   devServer: {
     static: './dist',
     compress: true,
@@ -96,12 +108,12 @@ module.exports = {
   resolve: {
     alias: {
       '@': `${__dirname}/src`,
-      '~':  resolve(__dirname, '../node_modules/'),
+      '~': resolve(__dirname, '../node_modules/'),
     },
     extensions: ['.js', '.json', '.scss'],
     modules: [
       resolve(__dirname, '../node_modules'),
-      'node_modules'
-    ]
+      'node_modules',
+    ],
   },
 };
